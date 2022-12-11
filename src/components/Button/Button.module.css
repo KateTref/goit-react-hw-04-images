@@ -1,0 +1,12 @@
+.loadMore {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: rgb(89, 89, 182);
+  outline: none;
+  border-color: rgb(89, 89, 182);
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: auto;
+  margin-right: auto;
+}

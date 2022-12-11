@@ -12,6 +12,7 @@ class App extends Component {
     totalPages: 0,
     page: 1,
     isLoading: false,
+    error: null,
   };
 
   handleFormSubmit = request => {
@@ -23,11 +24,16 @@ class App extends Component {
     const { request, page } = this.state;
     if (prevState.request !== request || prevState.page !== page) {
       this.setState({ isLoading: true });
-      const { totalPages, hits } = await getImages(request, page);
-      this.setState(prevState => {
-        return { images: [...prevState.images, ...hits], totalPages };
-      });
-      this.setState({ isLoading: false });
+      try {
+        const { totalPages, hits } = await getImages(request, page);
+        this.setState(prevState => {
+          return { images: [...prevState.images, ...hits], totalPages };
+        });
+      } catch {
+        this.setState({ error: 'We can not get data. Try again' });
+      } finally {
+        this.setState({ isLoading: false });
+      }
     }
   }
 
@@ -38,19 +44,21 @@ class App extends Component {
   };
 
   render() {
-    const { images, totalPages, page, isLoading } = this.state;
+    const { request, images, totalPages, page, isLoading, error } = this.state;
     return (
-      <>
+      <div className="container">
         <SearchBar onSubmit={this.handleFormSubmit} />
+
         {isLoading && <Loader />}
-        <ImageGallery images={this.state.images} />
-        {images.length > 0 && page <= totalPages && (
-          <LoadMore
-            getMoreImages={this.getMoreImages}
-            currentPage={this.state.page}
-          />
+        {images.length === 0 && request !== '' && !error && (
+          <p>Nothing found for you request</p>
         )}
-      </>
+        <ImageGallery images={images} onClick={this.toggleModal} />
+        {error && <p>{error}</p>}
+        {images.length > 0 && page < totalPages && (
+          <LoadMore getMoreImages={this.getMoreImages} currentPage={page} />
+        )}
+      </div>
     );
   }
 }

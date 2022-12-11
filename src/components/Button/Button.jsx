@@ -1,6 +1,12 @@
+import css from './Button.module.css';
+
 const LoadMore = ({ getMoreImages, currentPage }) => {
   return (
-    <button type="button" onClick={() => getMoreImages(currentPage)}>
+    <button
+      className={css.loadMore}
+      type="button"
+      onClick={() => getMoreImages(currentPage)}
+    >
       Load more
     </button>
   );
