@@ -17,6 +17,7 @@ class SearchBar extends Component {
     }
     this.props.onSubmit(request);
     this.setState({ request: '' });
+    console.log(this.state.request);
   };
 
   render() {
