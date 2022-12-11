@@ -1,8 +1,9 @@
 .searchbar {
   width: 100vw;
-  display: block;
+  display: flex;
   background-color: rgb(89, 89, 182);
   padding-top: 10px;
   padding-bottom: 10px;
   align-items: center;
+  justify-content: center;
 }

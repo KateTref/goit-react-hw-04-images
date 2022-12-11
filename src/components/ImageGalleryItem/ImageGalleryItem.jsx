@@ -26,7 +26,7 @@ class imageGalleryItem extends Component {
             onClick={this.handleImageClick}
             src={this.props.image.webformatURL}
             alt={this.props.image.tags}
-            width="300"
+            width="340"
           />
         </li>
         {this.state.showModal && (
