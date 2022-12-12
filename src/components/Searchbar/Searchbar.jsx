@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import css from './Searchbar.module.css';
+import { ReactComponent as SearchIcon } from '../../svg/Search.svg';
 class SearchBar extends Component {
   state = {
     request: '',
@@ -23,13 +24,13 @@ class SearchBar extends Component {
   render() {
     return (
       <header className={css.searchbar}>
-        <form onSubmit={this.handleSubmit} className="form">
-          <button type="submit" className="button">
-            <span className="button-label">Search</span>
+        <form onSubmit={this.handleSubmit} className={css.form}>
+          <button type="submit" className={css.button}>
+            <SearchIcon width="30" height="30" />
           </button>
 
           <input
-            className="input"
+            className={css.input}
             type="text"
             autoComplete="off"
             autoFocus

@@ -46,19 +46,20 @@ class App extends Component {
   render() {
     const { request, images, totalPages, page, isLoading, error } = this.state;
     return (
-      <div className="container">
+      <>
         <SearchBar onSubmit={this.handleFormSubmit} />
-
-        {isLoading && <Loader />}
-        {images.length === 0 && request !== '' && !error && (
-          <p>Nothing found for you request</p>
-        )}
-        <ImageGallery images={images} onClick={this.toggleModal} />
-        {error && <p>{error}</p>}
-        {images.length > 0 && page < totalPages && (
-          <LoadMore getMoreImages={this.getMoreImages} currentPage={page} />
-        )}
-      </div>
+        <div className="container">
+          {isLoading && <Loader />}
+          {images.length === 0 && request !== '' && !error && (
+            <p>Nothing found for you request</p>
+          )}
+          <ImageGallery images={images} onClick={this.toggleModal} />
+          {error && <p>{error}</p>}
+          {images.length > 0 && page < totalPages && (
+            <LoadMore getMoreImages={this.getMoreImages} currentPage={page} />
+          )}
+        </div>
+      </>
     );
   }
 }
