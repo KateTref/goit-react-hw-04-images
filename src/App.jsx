@@ -49,11 +49,14 @@ class App extends Component {
       <>
         <SearchBar onSubmit={this.handleFormSubmit} />
         <div className="container">
-          {isLoading && <Loader />}
-          {images.length === 0 && request !== '' && !error && (
+          {isLoading && <Loader className="loader" />}
+          {images.length === 0 && request !== '' && !error && !isLoading && (
             <p>Nothing found for you request</p>
           )}
-          <ImageGallery images={images} onClick={this.toggleModal} />
+          <ImageGallery
+            images={images}
+            onClick={this.toggleModal}
+          ></ImageGallery>
           {error && <p>{error}</p>}
           {images.length > 0 && page < totalPages && (
             <LoadMore getMoreImages={this.getMoreImages} currentPage={page} />

@@ -26,7 +26,8 @@ class SearchBar extends Component {
       <header className={css.searchbar}>
         <form onSubmit={this.handleSubmit} className={css.form}>
           <button type="submit" className={css.button}>
-            <SearchIcon width="30" height="30" />
+            <span className={css.buttonLabel}></span>
+            <SearchIcon width="30" height="30" className={css.searchSvg} />
           </button>
 
           <input
