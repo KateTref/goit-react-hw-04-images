@@ -4,7 +4,7 @@ import css from './Modal.module.css';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export default function Modal({ modalImage, onClose, toggleModal }) {
+export default function Modal({ modalImage, toggleModal }) {
   useEffect(() => {
     const handleKeyDown = evt => {
       if (evt.code === 'Escape') {
@@ -12,12 +12,18 @@ export default function Modal({ modalImage, onClose, toggleModal }) {
       }
     };
     window.addEventListener('keydown', handleKeyDown);
-    return window.removeEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [toggleModal]);
+
+  const handleImageClick = evt => {
+    if (evt.currentTarget === evt.target) {
+      toggleModal();
+    }
+  };
 
   const { largeImageURL, tags } = modalImage;
   return createPortal(
-    <div className={css.overlay} onClick={onClose}>
+    <div className={css.overlay} onClick={handleImageClick}>
       <div className={css.modal}>
         <img src={largeImageURL} alt={tags} width="940" />
       </div>

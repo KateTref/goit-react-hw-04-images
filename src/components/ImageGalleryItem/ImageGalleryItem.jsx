@@ -9,18 +9,12 @@ function ImageGalleryItem({ image }) {
     setShowModal(prevState => !prevState);
   };
 
-  const handleImageClick = evt => {
-    if (evt.currentTarget === evt.target) {
-      toggleModal();
-    }
-  };
-
   return (
     <div className={css.imageGalleryItem}>
       <li>
         <img
           className={css.imageGalleryImage}
-          onClick={handleImageClick}
+          onClick={toggleModal}
           src={image.webformatURL}
           alt={image.tags}
           width="340"
@@ -29,7 +23,7 @@ function ImageGalleryItem({ image }) {
       {showModal && (
         <Modal
           modalImage={image}
-          onClose={handleImageClick}
+          onClose={toggleModal}
           toggleModal={toggleModal}
         />
       )}
