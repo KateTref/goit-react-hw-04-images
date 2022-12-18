@@ -5,16 +5,15 @@ import css from './Modal.module.css';
 const modalRoot = document.querySelector('#modal-root');
 
 export default function Modal({ modalImage, onClose, toggleModal }) {
-  const handleKeyDown = evt => {
-    if (evt.code === 'Escape') {
-      toggleModal();
-    }
-  };
-
   useEffect(() => {
+    const handleKeyDown = evt => {
+      if (evt.code === 'Escape') {
+        toggleModal();
+      }
+    };
     window.addEventListener('keydown', handleKeyDown);
     return window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [toggleModal]);
 
   const { largeImageURL, tags } = modalImage;
   return createPortal(
