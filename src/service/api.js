@@ -14,5 +14,13 @@ export const getImages = async (request, page = 1) => {
   );
   const { totalHits, hits } = data;
   const totalPages = Math.ceil(totalHits / PER_PAGE);
-  return { totalPages, hits };
+  const images = hits.map(image => {
+    return {
+      image: image.webformatURL,
+      largeImage: image.largeImageURL,
+      tags: image.tags,
+      id: image.id,
+    };
+  });
+  return { totalPages, images };
 };

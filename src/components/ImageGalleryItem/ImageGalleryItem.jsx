@@ -15,7 +15,7 @@ function ImageGalleryItem({ image }) {
         <img
           className={css.imageGalleryImage}
           onClick={toggleModal}
-          src={image.webformatURL}
+          src={image.image}
           alt={image.tags}
           width="340"
         />

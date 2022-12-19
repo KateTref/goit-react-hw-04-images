@@ -21,11 +21,11 @@ export default function Modal({ modalImage, toggleModal }) {
     }
   };
 
-  const { largeImageURL, tags } = modalImage;
+  const { largeImage, tags } = modalImage;
   return createPortal(
     <div className={css.overlay} onClick={handleImageClick}>
       <div className={css.modal}>
-        <img src={largeImageURL} alt={tags} width="940" />
+        <img src={largeImage} alt={tags} width="940" />
       </div>
     </div>,
     modalRoot

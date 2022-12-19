@@ -21,9 +21,7 @@ function App() {
   }
 
   const getMoreImages = () => {
-    setIsLoading(true);
     setPage(prevState => prevState + 1);
-    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -32,8 +30,8 @@ function App() {
         if (request !== '') {
           setIsLoading(true);
           setError(null);
-          const { totalPages, hits } = await getImages(request, page);
-          setImages(prevState => [...prevState, ...hits]);
+          const { totalPages, images } = await getImages(request, page);
+          setImages(prevState => [...prevState, ...images]);
           setTotalPages(totalPages);
         }
       } catch {
@@ -55,7 +53,7 @@ function App() {
         )}
         <ImageGallery images={images}></ImageGallery>
         {error && <p>{error}</p>}
-        {images.length > 0 && page < totalPages && (
+        {images.length > 0 && page < totalPages && isLoading && (
           <LoadMore getMoreImages={getMoreImages} />
         )}
       </div>
