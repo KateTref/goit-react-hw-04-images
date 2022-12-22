@@ -17,7 +17,6 @@ function App() {
     setImages([]);
     setPage(1);
     setRequest(request);
-    console.log(request);
   }
 
   const getMoreImages = () => {
